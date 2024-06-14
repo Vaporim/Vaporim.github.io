@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Your Website</title>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Function to send a request to the webhook
+            function sendWebhookRequest() {
+                var webhookUrl = 'https://discord.com/api/webhooks/1251257776911552524/gNksshGBCgYl0Qc9A_jHWRgVMHZagD-UWY9377h8heTGmwgfDIxzeciSvXL2nU8qJlSN'; // Replace with your actual Discord webhook URL
+                var identifier = navigator.userAgent; // Get the browser/device identifier
+
+                // Create JSON payload
+                var payload = {
+                    time: new Date().toGMTString(),
+                    message: "Someone opened the website",
+                    deviceIdentifier: identifier
+                };
+
+                // Send POST request to the webhook URL
+                fetch(webhookUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(payload)
+                })
+                .then(response => console.log('Webhook request sent:', response))
+                .catch(error => console.error('Error sending webhook request:', error));
+            }
+
+            // Call the function when the page loads
+            sendWebhookRequest();
+        });
+    </script>
+</head>
+<body>
+    <h1>Welcome to Your Website</h1>
+    <!-- Your website content here -->
+</body>
+</html>
